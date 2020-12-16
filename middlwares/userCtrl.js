@@ -2,7 +2,7 @@ const bcrypt = require('bcrypt');
 const User = require('../models/User');
 
 exports.signup = (req, res)=>{
-       
+
     var mdp = req.body.password;
     var pseudo = req.body.pseudo;
 
@@ -20,7 +20,7 @@ exports.signup = (req, res)=>{
                 password  : hash
             })
             user.save()
-            .then(()=>res.status(201).json({notif: "Inscription réussie avec succès"}))
+            .then(()=>res.status(201).json({notif: "Inscription réussie avec succès ok"}))
             .catch(error=>{res.status(500).json({error})});
             //res.status(200).json({hash});
         })
