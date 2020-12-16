@@ -1,0 +1,20 @@
+{
+  "name": "marvycode",
+  "version": "1.0.0",
+  "description": "Plate-forme de rencontre et de partage des codes sources entre développeurs congolais",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Marvy MOUANDA NGOMA",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.0.0",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.11.8",
+    "mongoose-unique-validator": "^2.0.3",
+    "nodemon": "^2.0.6",
+    "save": "^2.4.0"
+  }
+}
