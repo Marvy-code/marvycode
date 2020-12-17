@@ -17,7 +17,7 @@ exports.signup = (req, res)=>{
             const user = new User({
                 pseudo    : req.body.pseudo,
                 email     : req.body.email,
-                password  : hash
+                password  : hash 
             })
             user.save()
             .then(()=>res.status(201).json({notif: "Inscription réussie avec succès ok"}))
@@ -29,5 +29,5 @@ exports.signup = (req, res)=>{
 }
 
 exports.login = (req, res)=>{
-    
+
 }
