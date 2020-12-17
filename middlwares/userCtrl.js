@@ -26,6 +26,8 @@ exports.signup = (req, res)=>{
         })
         .catch((error)=>{res.status(200).json({error})});
     } 
+}
 
- }
+exports.login = (req, res)=>{
     
+}
