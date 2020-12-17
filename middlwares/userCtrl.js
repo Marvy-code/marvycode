@@ -1,5 +1,6 @@
 const bcrypt = require('bcrypt');
 const User = require('../models/User');
+const jwt = require('jsonwebtoken');
 
 exports.signup = (req, res)=>{
 
@@ -22,12 +23,32 @@ exports.signup = (req, res)=>{
             user.save()
             .then(()=>res.status(201).json({notif: "Inscription réussie avec succès ok"}))
             .catch(error=>{res.status(500).json({error})});
-            //res.status(200).json({hash});
         })
         .catch((error)=>{res.status(200).json({error})});
     } 
 }
 
 exports.login = (req, res)=>{
-
+    User.findOne({pseudo: req.body.pseudo})
+    .then(user=>{
+        if(!user){
+            return res.status(501).json({error: "Utilisateur non trouvé"});
+        }
+        bcrypt.compare(req.body.password, user.password)
+        .then(valid=>{
+            if(!valid){
+                return res.status(500).json({error: "Mot de passe incorrect"});
+            }
+            res.status(200).json({
+                userId:user._id,
+                token: jwt.sign(
+                    {userId:user._id},
+                    "RANDOM_TOKEN_VALIDATE_MARVYCODE",
+                    {expiresIn: "24"}
+                )
+            });
+        })
+        .catch(error=>res.status(500).json({error}))
+    })
+    .catch(error=>res.status(500).json(error));
 }
